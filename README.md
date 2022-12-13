@@ -3,17 +3,6 @@ Express-upload-amazon-s3
 
 Sample project for demonstrating how to upload file from web through express to Amazon S3 (Simple Storage Service) by [aws-sdk](https://github.com/aws/aws-sdk-js)
 
-## Setup
-##### 1.Download Project
-```bash
-git clone https://github.com/ryanhanwu/express-upload-amazon-s3.git
-```
-##### 2.Install required packages
-```bash
-npm install
-```
-
-##### 3.Update Amazon Crenditials
 
 * Edit ```/config.json```
 
@@ -25,7 +14,6 @@ npm install
 }
 ```
 
-##### 4.Update Bucket Name
 
 * Edit ```/routes/upload.js```, update the value of **Bucket** to your bucket name.
 
@@ -37,7 +25,7 @@ s3.putObject({
 }, this);
 ```
 
-##### 5.Start server
+* Start server
 	node app.js
 
 Now check [http://localhost:3000](http://localhost:3000)
