@@ -3,27 +3,19 @@
  */
 
 var express = require('express'),
-	routes = require('./routes'),
-	multer = require('multer'),
-	upload = require('./routes/upload'),
-	http = require('http'),
-	path = require('path');
-
-uploader = multer({
-	dest: 'uploads/'
-});
+	http = require('http')
 
 var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, '/views'));
-app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', routes.index);
-app.post('/upload', uploader.single('singleFile'), upload.s3); //"singleFile" is the field name
-
-http.createServer(app).listen(app.get('port'), function() {
-	console.log('Express server listening on port ' + app.get('port'));
-});
+var fileupload = require("express-fileupload");
+app.use(fileupload());
+app.listen(8000, () => {
+	console.log("Application started and Listening on port 8000");
+  });
+app.get('/', (req, res)=>{
+	res.sendFile('/file_upload_form.html', {root: __dirname })
+})
+app.post('/success',(req, res)=>{
+	var file;
+	file = req.files.file;
+	res.status(200).sendFile('/success.html', {root: __dirname })
+} ); 
