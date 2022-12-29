@@ -7,7 +7,9 @@ var express = require('express'),
 
 var app = express();
 var fileupload = require("express-fileupload");
+var uploadTimeout = require("connect-timeout")
 app.use(fileupload());
+app.use(uploadTimeout(200000));
 app.listen(8000, () => {
 	console.log("Application started and Listening on port 8000");
   });
